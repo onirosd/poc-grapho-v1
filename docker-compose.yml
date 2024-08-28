@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  poc-consist-graphql:
+    image: onirosd/ms-graphql-singlestore-poc-sg:1.0.0
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: ./src/main/docker/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - MSCUSTOMERS_URL=http://localhost:9060/
+      - DB_URL=jdbc:singlestore://svc-034eb066-0a94-4be5-ac87-cd30f2986a3c-dml.azr-virginia1-2.svc.singlestore.com:3306/CLIENTES_CONSIST_POC_DB?pool=true&maxPoolSize=10
+      - DB_USER=apppoc01user
+      - DB_PASSWORD=consistpoc
+      - APPLICATIONINSIGHTS_CONNECTION_STRING=InstrumentationKey=d872eb50-2c6a-42df-9ec7-ae144524e740;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/
+      - ENCRYPT_KEY=12345678901234561234567890123456
+      - ENCRYPT_IV=1234567890123456

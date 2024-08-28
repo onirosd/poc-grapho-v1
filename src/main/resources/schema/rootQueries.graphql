@@ -1,0 +1,15 @@
+
+type Query{
+    # dbcSearch(filter:DbcFilter!): Dbc2
+    dbcSearchCicPersonpn(filter:PersonPnSearchFilter): CustomerPn
+    dbcSearchCicPersonpj(filter:PersonPjSearchFilter): CustomerPj
+
+    direcSearch(filter:DirecSearchFilter): [Dire]
+    telefonoSearch(filter:TelefoneSearchFilter): [Phones]
+    emailsSearch(filter:EmailsSearchFilter): [Emails]
+    relationsSearch(filter:RelationsSearchFilter): [ThirdPartyRelationships]
+    
+}
+
+
+

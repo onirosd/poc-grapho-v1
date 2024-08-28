@@ -1,0 +1,66 @@
+
+microservices.customers:
+  url: ${MSCUSTOMERS_URL:http://localhost:9060/}
+
+
+dgs:
+  graphql:
+    virtualthreads.enabled: true
+    schema-location:
+      - "classpath*:schema/**/*.graphql*"
+      - "classpath*:schema/**/*.gql"   
+
+logging:
+  pattern:
+    console: "%clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(---){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+  level.org.springframework.jdbc.core: ERROR
+
+
+spring:
+  main:
+    banner-mode: OFF
+
+  datasource:
+    url: ${DB_URL:jdbc:singlestore://svc-4c1faa5f-cc87-43b6-9748-7da62cde8a83-dml.azr-virginia1-2.svc.singlestore.com:3306/CLIENTES_CONSIST_POC_DB?pool=true&maxPoolSize=10}
+    username: ${DB_USER:admin}
+    password: ${DB_PASSWORD:Fakesoliman$1}
+    driver-class-name: com.singlestore.jdbc.Driver
+
+  # datasource:
+  #   url: ${DB_URL:jdbc:singlestore://svc-034eb066-0a94-4be5-ac87-cd30f2986a3c-dml.azr-virginia1-2.svc.singlestore.com:3306/CLIENTES_CONSIST_POC_DB?pool=true&maxPoolSize=10}
+  #   username: ${DB_USER:apppoc01user}
+  #   password: ${DB_PASSWORD:consistpoc}
+  #   driver-class-name: com.singlestore.jdbc.Driver
+    
+
+  jpa:
+    hibernate:
+        ddl-auto: none
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+          
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+encryption:
+  key: ${ENCRYPT_KEY:12345678901234561234567890123456}
+  iv: ${ENCRYPT_IV:1234567890123456}
+
+management:
+  endpoints.web.exposure.include: '*'
+  metrics:
+    dgs-graphql:
+      enabled: true
+      instrumentation:
+        enabled: true
+      data-loader-instrumentation:
+        enabled: true
+
+      tag-customizers:
+        outcome:
+          enabled: true
+
+      query-signature:
+        enabled: true

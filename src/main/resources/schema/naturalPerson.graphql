@@ -1,0 +1,168 @@
+type CustomerPn{
+    cic: String
+    personId: String
+    customerType: CustomerType
+    natural: Dbc2pn,
+    relations: [ThirdPartyRelationships],
+    directions: [Dire],
+    phones: [Phones],
+    emails: [Emails]
+}
+
+
+type Dbc2pn {
+    document: Document,
+    firstName: String,
+    secondName: String,
+    fatherLastName: String,
+    motherLastName: String,
+    demographicInformation: DemographicInformation
+    internalInformation: InternalInformation
+    financialSummary: FinancialSummary0
+}
+
+type CustomerType{
+    code: String
+}
+type Document{
+    foreignFullDocument: String,
+    dniDigitVerify: String
+}
+type DemographicInformation{
+    birthDate: String,
+    birthPlace: BirthPlace,
+    gender: Gender,
+    nationality: Nationality,
+    isResident: Boolean,
+    maritalStatus: MaritalStatus,
+    housingType: HousingType,
+    situation: Situation,
+    instruction: Instruction,
+    economicActivity: EconomicActivity,
+    hasOwnBusiness: Boolean,
+    ownBusinessInformation: OwnBusinessInformation,
+    socioeconomicStatus: SocioeconomicStatus
+}
+type BirthPlace{
+    code: String
+}
+type Gender{
+    code: String
+}
+type Nationality{
+    code: String
+}
+type MaritalStatus{
+    code: String
+}
+type HousingType{
+    code: String
+}
+type Situation{
+    code: String
+}
+type Instruction{
+    instructionDegree: InstructionDegree,
+    profession: Profession
+}
+type OwnBusinessInformation{
+    legalName: String,
+    ruc: String,
+    sunarpReferenceId: String
+
+}
+type SocioeconomicStatus{
+    code: String
+}
+type InternalInformation{
+    bankRelationship: BankRelationship0,
+    politicallyExposed: PoliticallyExposed0,
+    bankingConditionsAcceptanceDate: String,
+    agency: Agency,
+    bussinesOfficer:BussinesOfficer0,
+    bankingType: BankingType0,
+    debtorCategory: DebtorCategory0,
+    sbsCode: String
+
+}
+type InstructionDegree{
+    code: String
+}
+type Profession{
+    code: String
+}
+type EconomicActivity{
+    primary: EconomicActivityType,
+    secondary:EconomicActivityType,
+}
+type EconomicActivityType{
+    code: String
+}
+
+type BankRelationship0{
+    code: String
+}
+type PoliticallyExposed0{
+    relationType: RelationType0,
+    expositionType: ExpositionType0
+}
+type RelationType0{
+    code: String
+}
+type ExpositionType0{
+    code: String
+}
+type BussinesOfficer0{
+    employedId: String
+}
+type Agency{
+    code: String
+}
+type BankingType0{
+    code: String
+}
+type DebtorCategory0{
+    code: String
+}
+
+type FinancialSummary0{
+    organizationMagnitude: OrganizationMagnitude0,
+    revenueRange: RevenueRange0
+
+}
+
+type OrganizationMagnitude0{
+    category: Category0,
+
+}
+type Category0{
+    code: String
+}
+type RevenueRange0{
+    code: String
+}
+
+input PersonPnSearchFilter {
+    cic: String
+    personId: String
+    customerType: CustomerTypeInputPn
+    directionType: TypeInputPn
+
+    firstName: String,
+    secondName: String,
+    fatherLastName: String,
+    motherLastName: String,
+
+    birthDate: String,
+    birthPlace: String
+
+}
+
+
+input CustomerTypeInputPn {
+    code: String
+}
+
+input TypeInputPn{
+    code: String
+}

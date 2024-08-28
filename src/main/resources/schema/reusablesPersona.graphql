@@ -1,0 +1,138 @@
+
+type Dire{
+
+     type:Type,
+     status:Status,
+     street:Street,
+     building:Building,
+     blockCode:String,
+     lotNumber:String,
+     urbanization:Urbanization,
+     zone:Zone,
+     reference:String,
+     summary:String,
+     geolocation: Geolocation
+}
+
+type Geolocation{
+    equivalentCode: String
+}
+
+type Type{
+    code: String
+}
+type Status{
+    code: String
+}
+type Street{
+    code: String,
+    name: String,
+    number: String
+}
+type Building{
+    code: String,
+    number: String
+}
+type Urbanization{
+    code: String,
+    name: String
+}
+type Zone{
+    code: String,
+    name: String
+}
+
+
+
+
+
+
+type Emails{
+    email: String,
+    emailState: EmailState,
+    emailType: EmailType
+}
+
+type EmailState{
+    code: String
+}
+type EmailType{
+    code: String
+}
+
+
+
+type Phones{
+    phoneNumber: String,
+    phoneType: PhoneType,
+    phoneState: PhoneState,
+    phoneClasification: PhoneClasification,
+    phoneAnexo: PhoneAnexo,
+    phonePais: PhonePais,
+    phoneArea: PhoneArea
+}
+
+type PhoneType{
+    code: String
+}
+type PhoneState{
+    code: String
+}
+type PhoneClasification{
+    code: String
+}
+type PhoneAnexo{
+    code: String
+}
+type PhonePais{
+    code: String
+}
+type PhoneArea{
+    code: String
+}
+
+
+type ThirdPartyRelationships{
+    type: Type,
+    subType: SubType2,
+    relatedPerson: RelatedPerson,
+    validityDateRange: validityDateRange2,
+    shareHolderParticipation: ShareHolderParticipation
+}
+
+type validityDateRange2 {
+    from: String,
+    to: String
+
+}
+
+type SubType2{
+    code: String
+}
+
+type RelatedPerson{
+    cic: String
+}
+
+type ShareHolderParticipation{
+    valueAssociated: String,
+    valueCodeAssociated: String, 
+    registerDate: String,
+    verificationDate: String
+}
+
+input DirecSearchFilter {
+    cic: String
+    type: String
+}
+
+input TelefoneSearchFilter{
+    cic: String
+}
+
+input EmailsSearchFilter{
+    cic: String
+}
+input RelationsSearchFilter{
+    cic: String
+}

@@ -1,0 +1,71 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.0'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'com.netflix.dgs.codegen' version '6.0.2'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom("io.opentelemetry:opentelemetry-bom:1.36.0")
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    implementation (platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:8.4.0"))
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter'
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-extended-scalars'
+    implementation group: 'com.netflix.graphql.dgs', name: 'graphql-dgs-spring-boot-micrometer'
+
+    // JDBC driver for SingleStore
+    implementation group: 'com.singlestore', name: 'singlestore-jdbc-client', version: '1.2.1'
+
+    // Optional: Telemetry and metrics
+    implementation("io.opentelemetry:opentelemetry-api")
+    implementation("io.opentelemetry:opentelemetry-sdk")
+    implementation("io.opentelemetry:opentelemetry-exporter-logging")
+    implementation 'io.opentelemetry:opentelemetry-exporter-otlp:1.36.0'
+    implementation("io.opentelemetry.semconv:opentelemetry-semconv:1.23.1-alpha")
+    implementation("io.opentelemetry:opentelemetry-sdk-extension-autoconfigure")
+    implementation 'io.opentelemetry:opentelemetry-exporter-prometheus:1.36.0-alpha'
+
+    // Utility libraries
+    implementation 'org.apache.commons:commons-lang3:3.14.0'
+    implementation 'org.ocpsoft.prettytime:prettytime:5.0.6.Final'
+
+    // Lombok (if used in the project)
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+generateJava {
+    packageName = 'net.csonic.customers.graphql'
+    generateClient = false
+    typeMapping = [
+        "Date"              : "java.time.LocalDate",
+        "NonNegativeInt"    : "java.lang.Integer",
+        "Url"               : "java.net.URL",
+        "DateTime"          : "java.time.OffsetDateTime"
+    ]
+}

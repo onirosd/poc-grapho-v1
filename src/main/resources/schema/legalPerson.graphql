@@ -1,0 +1,133 @@
+
+
+type CustomerPj{
+    cic: String
+    personId: String
+    customerType: CustomerType2
+    legal: Dbc2pj,
+    relations: [ThirdPartyRelationships],
+    directions: [Dire],
+    phones: [Phones],
+    emails: [Emails]
+}
+
+type CustomerType2{
+    code: String
+}
+
+type Dbc2pj {
+    legalName: String
+    fullName: String
+    demographicInformation: DemographicInformation2
+    internalInformation: InternalInformation2
+    financialSummary: FinancialSummary
+}
+
+type DemographicInformation2 {
+    isResident: Boolean
+    economicActivity: EconomicActivity2
+    sunarpReferenceId: String
+    societyType: SocietyType
+    businessPurpose: BusinessPurpose
+    organizationType: OrganizationType
+    constitutionDate: String
+    isBranchCompany: Boolean
+}
+
+type EconomicActivity2 {
+    primary: ActivityType
+    secondary: ActivityType
+}
+
+type ActivityType {
+    code: String
+}
+
+type SocietyType {
+    code: String
+}
+
+type BusinessPurpose {
+    code: String
+    description: String
+}
+
+type OrganizationType {
+    code: String
+}
+
+type InternalInformation2 {
+    bankRelationship: BankRelationship
+    politicallyExposed: PoliticallyExposed
+    bankingConditionsAcceptanceDate: String
+    agency: Agency
+    businessOfficer: BussinesOfficer
+    bankingType: BankingType
+    debtorCategory: DebtorCategory
+    sbsCode: String
+}
+
+type DebtorCategory{
+    code: String
+}
+
+type BankRelationship{
+    code: String
+}
+type BussinesOfficer{
+    employedId: String
+}
+
+type FinancialSummary {
+    organizationMagnitude: OrganizationMagnitude
+    revenueRange: RevenueRange
+}
+
+type OrganizationMagnitude {
+    category: MagnitudeCategory
+}
+
+type MagnitudeCategory {
+    code: String
+}
+
+type RevenueRange {
+    code: String
+}
+
+type PoliticallyExposed {
+    relationType: RelationType
+    expositionType: ExpositionType
+}
+
+type RelationType {
+    code: String
+}
+
+type ExpositionType {
+    code: String
+}
+
+type BankingType {
+    code: String
+}
+
+input PersonPjSearchFilter {
+    # cic: String
+    # personId: String
+    cic: String
+    personId: String
+    customerType: CustomerType2Input
+    directionType: TypeInput
+    fullName: String
+}
+
+
+input CustomerType2Input {
+    code: String
+}
+
+input TypeInput{
+    code: String
+}
+
