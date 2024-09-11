@@ -1,5 +1,3 @@
-package net.csonic.customers.graphql;
-
 import net.csonic.customers.graphql.datasource.entity.CorreoEntity;
 import net.csonic.customers.graphql.datasource.entity.DbcEntity;
 import net.csonic.customers.graphql.datasource.entity.DceEntity;
@@ -37,7 +35,7 @@ public class GraphqlBeanMapper {
     
     public Emails mapToGraphql(CorreoEntity correoEntity) {
         return Emails.newBuilder()
-               .email(decrypt(correoEntity.getCorreo()))
+               .email(correoEntity.getCorreo())
                .emailState(EmailState.newBuilder().code(correoEntity.getCorreoEstado()).build())
                .emailType(EmailType.newBuilder().code(correoEntity.getTipoCorreoId()).build())
                .build();
@@ -49,34 +47,34 @@ public class GraphqlBeanMapper {
               .status(Status.newBuilder().code(direEntity.getDireMscSdir()).build())
               .street(
                      Street.newBuilder()
-                     .code(decrypt(direEntity.getDireCodTvia()))
-                     .name(decrypt(direEntity.getDireMscBvia()))
-                     .number(decrypt(direEntity.getDireNumeracion()))
+                     .code(direEntity.getDireCodTvia())
+                     .name(direEntity.getDireMscBvia())
+                     .number(direEntity.getDireNumeracion())
                      .build()
               )
               .building(
                      Building.newBuilder()
-                     .code(decrypt(direEntity.getDireMscDpir()))
-                     .number(decrypt(direEntity.getDireNumDpir()))
+                     .code(direEntity.getDireMscDpir())
+                     .number(direEntity.getDireNumDpir())
                      .build()
               )
-              .blockCode(decrypt(direEntity.getDireMscMnza()))
-              .lotNumber(decrypt(direEntity.getDireMscLote()))
+              .blockCode(direEntity.getDireMscMnza())
+              .lotNumber(direEntity.getDireMscLote())
               .urbanization(
                      Urbanization.newBuilder()
-                     .code(decrypt(direEntity.getDireCodTchb()))
-                     .name(decrypt(direEntity.getDireMscCjhb()))
+                     .code(direEntity.getDireCodTchb())
+                     .name(direEntity.getDireMscCjhb())
                      .build()
               )
               .zone(
                      Zone.newBuilder()
-                     .code(decrypt(direEntity.getDireCodSezn()))
-                     .name(decrypt(direEntity.getDireMscSezn()))
+                     .code(direEntity.getDireCodSezn())
+                     .name(direEntity.getDireMscSezn())
                      .build()
                     )
-              .reference(decrypt(direEntity.getDireGlsRefe()))
+              .reference(direEntity.getDireGlsRefe())
               .geolocation(Geolocation.newBuilder().equivalentCode(direEntity.getDireCodLuga()).build())
-              .summary(decrypt(direEntity.getDireGlsDire()))
+              .summary(direEntity.getDireGlsDire())
               .build();
     }
 
@@ -104,13 +102,13 @@ public class GraphqlBeanMapper {
 
     public Phones mapToGraphql(TelefonoEntity telefonoEntity) {
         return Phones.newBuilder()
-               .phoneNumber(decrypt(telefonoEntity.getTelefonoNumero()))
+               .phoneNumber(telefonoEntity.getTelefonoNumero())
                .phoneType(PhoneType.newBuilder().code(telefonoEntity.getTipoTelefonoId()).build())
                .phoneState(PhoneState.newBuilder().code(telefonoEntity.getTelefonoEstado()).build())
                .phoneClasification(PhoneClasification.newBuilder().code(telefonoEntity.getTelefonoClasificacionId()).build())
                .phoneAnexo(PhoneAnexo.newBuilder().code(telefonoEntity.getTelefonoAnexo()).build())
                .phonePais(PhonePais.newBuilder().code(telefonoEntity.getTelefonoCodPais()).build())
-               .phoneArea(PhoneArea.newBuilder().code(decrypt(telefonoEntity.getTelefonoCodArea())).build())
+               .phoneArea(PhoneArea.newBuilder().code(telefonoEntity.getTelefonoCodArea()).build())
                .build();
     }
 
@@ -125,11 +123,11 @@ public class GraphqlBeanMapper {
             .customerType(CustomerType.newBuilder().code(dbcEntity.getDbcCodTicl()).build())
             .natural(
                 Dbc2pn.newBuilder()
-                .document(Document.newBuilder().dniDigitVerify(dbcEntity.getDbcCodVdni()).foreignFullDocument(decrypt(dbcEntity.getDbcNumDamp())).build())
-                .firstName(decrypt(dbcEntity.getDbcGlsNomPrimer()))
-                .secondName(decrypt(dbcEntity.getDbcGlsNomSegundo()))
-                .fatherLastName(decrypt(dbcEntity.getDbcGlsApat()))
-                .motherLastName(decrypt(dbcEntity.getDbcGlsAmat()))
+                .document(Document.newBuilder().dniDigitVerify(dbcEntity.getDbcCodVdni()).foreignFullDocument(dbcEntity.getDbcNumDamp()).build())
+                .firstName(dbcEntity.getDbcGlsNomPrimer())
+                .secondName(dbcEntity.getDbcGlsNomSegundo())
+                .fatherLastName(dbcEntity.getDbcGlsApat())
+                .motherLastName(dbcEntity.getDbcGlsAmat())
                 .demographicInformation(
                     DemographicInformation.newBuilder()
                         .birthDate(DateUtils.addHyphensToDateString(dcpEntity.getDcpFecFnac()))
@@ -205,8 +203,8 @@ public class GraphqlBeanMapper {
             .customerType(CustomerType2.newBuilder().code(dbcEntity.getDbcCodTicl()).build())
             .legal(
                 Dbc2pj.newBuilder()
-                .legalName(decrypt(dbcEntity.getDbcGlsNomc()))
-                .fullName(decrypt(dceEntity.getDceGlsNfan()))
+                .legalName(dbcEntity.getDbcGlsNomc())
+                .fullName(dceEntity.getDceGlsNfan())
                 .demographicInformation(
                     DemographicInformation2.newBuilder()
                         .isResident("1".equals(dbcEntity.getDbcIndResi()))  // Assuming '1' means true
@@ -215,7 +213,7 @@ public class GraphqlBeanMapper {
                             .secondary(ActivityType.newBuilder().code(dcpEntity.getDcpCodActs()).build())
                             .build()
                         )
-                        .sunarpReferenceId(decrypt(dbcEntity.getDbcNumRmer()))
+                        .sunarpReferenceId(dbcEntity.getDbcNumRmer())
                         .societyType(SocietyType.newBuilder().code(dceEntity.getDceCodTsoc()).build())
                         .businessPurpose(BusinessPurpose.newBuilder().code(dbcEntity.getDbcCodOdse()).build())
                         .organizationType(OrganizationType.newBuilder().code(dceEntity.getDceIndTemp()).build())

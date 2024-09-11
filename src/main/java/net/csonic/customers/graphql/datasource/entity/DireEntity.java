@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "DIRE")
+@Table(name = "DIRE2")
 public class DireEntity {
     @Id
     @Column(name = "DIRE_KEY_IREG")

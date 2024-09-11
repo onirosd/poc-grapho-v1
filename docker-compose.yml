@@ -16,3 +16,5 @@ services:
       - APPLICATIONINSIGHTS_CONNECTION_STRING=InstrumentationKey=d872eb50-2c6a-42df-9ec7-ae144524e740;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/
       - ENCRYPT_KEY=12345678901234561234567890123456
       - ENCRYPT_IV=1234567890123456
+      - ENCRYPT_PASS:Fake9578
+      - ENCRYPT_SALT:475w4
