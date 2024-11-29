@@ -25,9 +25,9 @@ spring:
   #   driver-class-name: com.singlestore.jdbc.Driver
 
   datasource:
-    url: ${DB_URL:jdbc:singlestore://svc-034eb066-0a94-4be5-ac87-cd30f2986a3c-dml.azr-virginia1-2.svc.singlestore.com:3306/CLIENTES_CONSIST_POC_DB?pool=true&maxPoolSize=10}
-    username: ${DB_USER:apppoc01user}
-    password: ${DB_PASSWORD:consistpoc}
+    url: ${DB_URL:jdbc:singlestore://svc-b73a31e2-d06e-4be4-b393-646930c7407d-dml.azr-virginia1-2.svc.singlestore.com:3306/CLIENTES_CONSIST_POC_DB_V3?pool=true&maxPoolSize=10}
+    username: ${DB_USER:appuserconsistpoc}
+    password: ${DB_PASSWORD:tSMF2sbKaaagxgZeyTK9Kf}
     driver-class-name: com.singlestore.jdbc.Driver
 
   jpa:

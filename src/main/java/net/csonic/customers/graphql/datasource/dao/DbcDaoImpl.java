@@ -60,11 +60,10 @@ public class DbcDaoImpl implements DbcDao {
             throw new IllegalArgumentException("Ambos dbcKeyIreg y dbcIdcIcli no pueden ser nulos");
         }
     }
-    
-     
-    @Override
+
+
     public Map<String, Object> findDbcDceDcpByCicAndPersonIdAndCustomerType(String cic, String personId, String customerType,
-                                                                            String firstName, String secondName, String fatherName,
+                                                                            String fullName, String fatherName,
                                                                             String motherName, String birthDate, String birthPlace) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<DbcEntity> query = cb.createQuery(DbcEntity.class);
@@ -81,11 +80,8 @@ public class DbcDaoImpl implements DbcDao {
         if (customerType != null) {
             predicate = cb.and(predicate, cb.equal(root.get("dbcCodTicl"), customerType));
         }
-        if (firstName != null) {
-            predicate = cb.and(predicate, cb.like(cb.lower(root.get("dbcGlsNomPrimer")), "%" + firstName.toLowerCase() + "%"));
-        }
-        if (secondName != null) {
-            predicate = cb.and(predicate, cb.like(cb.lower(root.get("dbcGlsNomSegundo")), "%" + secondName.toLowerCase() + "%"));
+        if (fullName != null) {
+            predicate = cb.and(predicate, cb.like(cb.lower(root.get("dbcGlsNombre")), "%" + fullName.toLowerCase() + "%"));
         }
         if (fatherName != null) {
             predicate = cb.and(predicate, cb.like(cb.lower(root.get("dbcGlsApat")), "%" + fatherName.toLowerCase() + "%"));
@@ -135,16 +131,16 @@ public class DbcDaoImpl implements DbcDao {
         return Optional.ofNullable(entityManager.createQuery(query).getSingleResult());
     }
 
- 
+
     // public Map<String, Object> findDbcDceDcpByCicAndPersonIdAndCustomerType(String cic, String personId, String customerType, String firstName, String secondName, String fatherName, String motherName , String birthDate , String birthPlace) {
     //     Optional<DbcEntity> dbcEntityOptional;
     //     Optional<DceEntity> dceEntityOptional = Optional.empty();
     //     Optional<DcpEntity> dcpEntityOptional = Optional.empty();
-    
+
     //     // Verifica si alguno de cic, personId o customerType están presentes
     //     if (cic != null || personId != null || customerType != null || firstName != null || secondName != null || fatherName != null || motherName != null) {
     //         dbcEntityOptional = dbcRepository.findByDbcKeyIregAndDbcIdcIcliDbcCodTicl(cic, personId, customerType, firstName, secondName, fatherName, motherName);
-    
+
     //         if (dbcEntityOptional.isPresent()) {
     //             String dbcKeyIreg = dbcEntityOptional.get().getDbcKeyIreg();
     //             dceEntityOptional = dceRepository.findById(dbcKeyIreg);
@@ -157,12 +153,12 @@ public class DbcDaoImpl implements DbcDao {
     //         // Si todos cic, personId y customerType están vacíos
     //         throw new IllegalArgumentException("El cic, personId o customerType no pueden estar vacíos.");
     //     }
-    
+
     //     Map<String, Object> entities = new HashMap<>();
     //     dbcEntityOptional.ifPresent(dbcEntity -> entities.put("dbc", dbcEntity));
     //     dceEntityOptional.ifPresent(dceEntity -> entities.put("dce", dceEntity));
     //     dcpEntityOptional.ifPresent(dcpEntity -> entities.put("dcp", dcpEntity));
-    
+
     //     return entities;
     // }
 
@@ -179,11 +175,11 @@ public class DbcDaoImpl implements DbcDao {
     //             CriteriaQuery<DceEntity> query = cb.createQuery(DceEntity.class);
     //             Root<DceEntity> root = query.from(DceEntity.class);
 
-            
+
     //             // Verifica si alguno de cic, personId o customerType están presentes
     //             if (cic != null || personId != null || customerType != null || fullName != null ) {
     //                 dbcEntityOptional = dbcRepository.findByDbcKeyIregAndDbcIdcIcliDbcCodTiclPj(cic, personId, customerType);
-            
+
     //                 if (dbcEntityOptional.isPresent()) {
     //                     String dbcKeyIreg = dbcEntityOptional.get().getDbcKeyIreg();
     //                     dceEntityOptional = dceRepository.findByIdAndFullName(dbcKeyIreg, fullName);
@@ -196,54 +192,54 @@ public class DbcDaoImpl implements DbcDao {
     //                 // Si todos cic, personId y customerType están vacíos
     //                 throw new IllegalArgumentException("El cic, personId o customerType no pueden estar vacíos.");
     //             }
-            
+
     //             Map<String, Object> entities = new HashMap<>();
     //             dbcEntityOptional.ifPresent(dbcEntity -> entities.put("dbc", dbcEntity));
     //             dceEntityOptional.ifPresent(dceEntity -> entities.put("dce", dceEntity));
     //             dcpEntityOptional.ifPresent(dcpEntity -> entities.put("dcp", dcpEntity));
-            
+
     //             return entities;
     // }
 
 
-    
+
     @Override
-public Map<String, Object> findDbcDceDcpByCicAndPersonIdAndCustomerTypePj(String cic, String personId, String customerType, String fullName) {
+    public Map<String, Object> findDbcDceDcpByCicAndPersonIdAndCustomerTypePj(String cic, String personId, String customerType, String fullName) {
 
-    CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-    CriteriaQuery<DbcEntity> query = cb.createQuery(DbcEntity.class);
-    Root<DbcEntity> dbcRoot = query.from(DbcEntity.class);
-    
-    // Los joins automáticos ya no necesitan las condiciones manuales
-    Join<DbcEntity, DceEntity> dceJoin = dbcRoot.join("dceEntity", JoinType.LEFT);
-    Join<DbcEntity, DcpEntity> dcpJoin = dbcRoot.join("dcpEntity", JoinType.LEFT);
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<DbcEntity> query = cb.createQuery(DbcEntity.class);
+        Root<DbcEntity> dbcRoot = query.from(DbcEntity.class);
 
-    Predicate predicate = cb.conjunction();
+        // Los joins automáticos ya no necesitan las condiciones manuales
+        Join<DbcEntity, DceEntity> dceJoin = dbcRoot.join("dceEntity", JoinType.LEFT);
+        Join<DbcEntity, DcpEntity> dcpJoin = dbcRoot.join("dcpEntity", JoinType.LEFT);
 
-    if (cic != null) {
-        predicate = cb.and(predicate, cb.equal(dbcRoot.get("dbcKeyIreg"), cic));
+        Predicate predicate = cb.conjunction();
+
+        if (cic != null) {
+            predicate = cb.and(predicate, cb.equal(dbcRoot.get("dbcKeyIreg"), cic));
+        }
+        if (personId != null) {
+            predicate = cb.and(predicate, cb.equal(dbcRoot.get("dbcIdcIcli"), personId));
+        }
+        if (customerType != null) {
+            predicate = cb.and(predicate, cb.equal(dbcRoot.get("dbcCodTicl"), customerType));
+        }
+        if (fullName != null) {
+            predicate = cb.and(predicate, cb.like(cb.lower(dceJoin.get("dceGlsNfan")), "%" + fullName.toLowerCase() + "%"));
+        }
+
+        query.select(dbcRoot).where(predicate);
+
+        DbcEntity result = entityManager.createQuery(query).getSingleResult();
+
+        Map<String, Object> entities = new HashMap<>();
+        entities.put("dbc", result);
+        entities.put("dce", result.getDceEntity());
+        entities.put("dcp", result.getDcpEntity());
+
+        return entities;
     }
-    if (personId != null) {
-        predicate = cb.and(predicate, cb.equal(dbcRoot.get("dbcIdcIcli"), personId));
-    }
-    if (customerType != null) {
-        predicate = cb.and(predicate, cb.equal(dbcRoot.get("dbcCodTicl"), customerType));
-    }
-    if (fullName != null) {
-        predicate = cb.and(predicate, cb.like(cb.lower(dceJoin.get("dceGlsNfan")), "%" + fullName.toLowerCase() + "%"));
-    }
-
-    query.select(dbcRoot).where(predicate);
-
-    DbcEntity result = entityManager.createQuery(query).getSingleResult();
-
-    Map<String, Object> entities = new HashMap<>();
-    entities.put("dbc", result);
-    entities.put("dce", result.getDceEntity());
-    entities.put("dcp", result.getDcpEntity());
-
-    return entities;
-}
 
 
 }

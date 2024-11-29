@@ -27,7 +27,7 @@ public class DceEntity {
 
     @Column(name = "DCE_IND_CMOS")
     private String dceIndCmos;
-    
+
     @Column(name = "DCE_REL_BANC")
     private String dceRelBanc;
 
@@ -169,17 +169,17 @@ public class DceEntity {
     @Override
     public String toString() {
         return "{" +
-            " dceKeyIdce='" + getDceKeyIdce() + "'" +
-            ", dceIndCate='" + getDceIndCate() + "'" +
-            ", dceCodTsoc='" + getDceCodTsoc() + "'" +
-            ", dceIndTemp='" + getDceIndTemp() + "'" +
-            ", dceGlsNfan='" + getDceGlsNfan() + "'" +
-            ", dceFecFctt='" + getDceFecFctt() + "'" +
-            ", dceIndCmos='" + getDceIndCmos() + "'" +
-            ", dceRelBanc='" + getDceRelBanc() + "'" +
-            "}";
+                " dceKeyIdce='" + getDceKeyIdce() + "'" +
+                ", dceIndCate='" + getDceIndCate() + "'" +
+                ", dceCodTsoc='" + getDceCodTsoc() + "'" +
+                ", dceIndTemp='" + getDceIndTemp() + "'" +
+                ", dceGlsNfan='" + getDceGlsNfan() + "'" +
+                ", dceFecFctt='" + getDceFecFctt() + "'" +
+                ", dceIndCmos='" + getDceIndCmos() + "'" +
+                ", dceRelBanc='" + getDceRelBanc() + "'" +
+                "}";
     }
-    
+
 
 
 }

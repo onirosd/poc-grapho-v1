@@ -30,8 +30,8 @@ public class DbcQueryService {
     }
 
 
-    public Map<String, Object> findDbcDceDcpByCicAndPersonIdAndCustomerType(String cic, String personId, String customerType, String firstName, String secondName, String fatherName, String motherName, String birthDate , String birthPlace) {
-        return dbcDao.findDbcDceDcpByCicAndPersonIdAndCustomerType(cic, personId, customerType, firstName, secondName, fatherName, motherName, birthDate, birthPlace);
+    public Map<String, Object> findDbcDceDcpByCicAndPersonIdAndCustomerType(String cic, String personId, String customerType, String fullName, String fatherName, String motherName, String birthDate , String birthPlace) {
+        return dbcDao.findDbcDceDcpByCicAndPersonIdAndCustomerType(cic, personId, customerType, fullName, fatherName, motherName, birthDate, birthPlace);
 
     }
 

@@ -5,8 +5,8 @@ import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.InputArgument;
 import net.csonic.customers.graphql.DgsConstants;
 import net.csonic.customers.graphql.GraphqlBeanMapper;
-import net.csonic.customers.graphql.datasource.entity.DireEntity;
-import net.csonic.customers.graphql.service.query.DireQueryService;
+import net.csonic.customers.graphql.datasource.entity.DdcEntity;
+import net.csonic.customers.graphql.service.query.DdcQueryService;
 import net.csonic.customers.graphql.types.Dire;
 import net.csonic.customers.graphql.types.DirecSearchFilter;
 
@@ -21,7 +21,7 @@ public class DireDataResolver {
     private final GraphqlBeanMapper graphqlBeanMapper;
 
     @Autowired
-    private DireQueryService queryService;
+    private DdcQueryService queryService;
 
     @Autowired
     public DireDataResolver(GraphqlBeanMapper graphqlBeanMapper) {
@@ -30,7 +30,7 @@ public class DireDataResolver {
 
     @DgsData(parentType = DgsConstants.QUERY_TYPE, field = DgsConstants.QUERY.DirecSearch)
     public List<Dire> findDirec(@InputArgument(name = DgsConstants.QUERY.DIRECSEARCH_INPUT_ARGUMENT.Filter) DirecSearchFilter filter) {
-        List<DireEntity> direEntities = queryService.findDirexCicxType(filter.getCic(), filter.getType());
+        List<DdcEntity> direEntities = queryService.findDirexCicxType(filter.getCic(), filter.getType());
         return direEntities.stream()
                 .map(graphqlBeanMapper::mapToGraphql)
                 .collect(Collectors.toList());

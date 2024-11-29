@@ -287,26 +287,26 @@ public class DcpEntity {
     @Override
     public String toString() {
         return "{" +
-            " dcpKeyIdcp='" + getDcpKeyIdcp() + "'" +
-            ", dcpFecFnac='" + getDcpFecFnac() + "'" +
-            ", dcpCodPnac='" + getDcpCodPnac() + "'" +
-            ", dcpIndSexo='" + getDcpIndSexo() + "'" +
-            ", dcpIndEciv='" + getDcpIndEciv() + "'" +
-            ", dcpIndNedu='" + getDcpIndNedu() + "'" +
-            ", dcpIngProm='" + getDcpIngProm() + "'" +
-            ", dcpCodActs='" + getDcpCodActs() + "'" +
-            ", dcpDcoPeps='" + getDcpDcoPeps() + "'" +
-            ", dcpIndLavdin='" + getDcpIndLavdin() + "'" +
-            ", dcpLugNaci='" + getDcpLugNaci() + "'" +
-            ", dcpIndCasa='" + getDcpIndCasa() + "'" +
-            ", dcpIndSlab='" + getDcpIndSlab() + "'" +
-            ", dcpCodProf='" + getDcpCodProf() + "'" +
-            ", dcpIndUcta='" + getDcpIndUcta() + "'" +
-            "}";
+                " dcpKeyIdcp='" + getDcpKeyIdcp() + "'" +
+                ", dcpFecFnac='" + getDcpFecFnac() + "'" +
+                ", dcpCodPnac='" + getDcpCodPnac() + "'" +
+                ", dcpIndSexo='" + getDcpIndSexo() + "'" +
+                ", dcpIndEciv='" + getDcpIndEciv() + "'" +
+                ", dcpIndNedu='" + getDcpIndNedu() + "'" +
+                ", dcpIngProm='" + getDcpIngProm() + "'" +
+                ", dcpCodActs='" + getDcpCodActs() + "'" +
+                ", dcpDcoPeps='" + getDcpDcoPeps() + "'" +
+                ", dcpIndLavdin='" + getDcpIndLavdin() + "'" +
+                ", dcpLugNaci='" + getDcpLugNaci() + "'" +
+                ", dcpIndCasa='" + getDcpIndCasa() + "'" +
+                ", dcpIndSlab='" + getDcpIndSlab() + "'" +
+                ", dcpCodProf='" + getDcpCodProf() + "'" +
+                ", dcpIndUcta='" + getDcpIndUcta() + "'" +
+                "}";
     }
 
-    
-  
+
+
 
 
 }

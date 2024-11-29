@@ -17,8 +17,8 @@ public interface DceRepository extends JpaRepository<DceEntity, String> {
     Optional<DceEntity> findById(String id);
 
     @Query("SELECT d FROM DceEntity d WHERE " +
-        "d.dceKeyIdce = :id AND " +
-        "(:fullName IS NULL OR d.dceGlsNfan LIKE %:fullName%)  ")
+            "d.dceKeyIdce = :id AND " +
+            "(:fullName IS NULL OR d.dceGlsNfan LIKE %:fullName%)  ")
     Optional<DceEntity> findByIdAndFullName(@Param("id") String id, @Param("fullName") String fullName);
 
     // Mono<DceEntity> findByCicAndPersonId(String cic, String personId);

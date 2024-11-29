@@ -5,8 +5,8 @@ import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.InputArgument;
 import net.csonic.customers.graphql.DgsConstants;
 import net.csonic.customers.graphql.GraphqlBeanMapper;
-import net.csonic.customers.graphql.datasource.entity.RelationsEntity;
-import net.csonic.customers.graphql.service.query.RelationsQueryService;
+import net.csonic.customers.graphql.datasource.entity.RecEntity;
+import net.csonic.customers.graphql.service.query.RecQueryService;
 import net.csonic.customers.graphql.types.RelationsSearchFilter;
 import net.csonic.customers.graphql.types.ThirdPartyRelationships;
 
@@ -16,21 +16,21 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @DgsComponent
-public class RelationsDataResolver {
+public class RecDataResolver {
 
     private final GraphqlBeanMapper graphqlBeanMapper;
 
     @Autowired
-    public RelationsDataResolver(GraphqlBeanMapper graphqlBeanMapper) {
+    public RecDataResolver(GraphqlBeanMapper graphqlBeanMapper) {
         this.graphqlBeanMapper = graphqlBeanMapper;
     }
 
     @Autowired
-    private RelationsQueryService queryService;
+    private RecQueryService queryService;
 
     @DgsData(parentType = DgsConstants.QUERY_TYPE, field = DgsConstants.QUERY.RelationsSearch)
     public List<ThirdPartyRelationships> findDirec(@InputArgument(name = DgsConstants.QUERY.DIRECSEARCH_INPUT_ARGUMENT.Filter) RelationsSearchFilter filter) {
-        List<RelationsEntity> relationsEntities = queryService.findById(filter.getCic());
+        List<RecEntity> relationsEntities = queryService.findById(filter.getCic());
         return relationsEntities.stream()
                 .map(graphqlBeanMapper::mapToGraphql)
                 .collect(Collectors.toList());

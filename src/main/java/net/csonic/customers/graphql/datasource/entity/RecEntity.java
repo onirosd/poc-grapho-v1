@@ -4,7 +4,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "REC")
-public class RelationsEntity {
+public class RecEntity {
 
     @Id
     @Column(name = "REC_CIC_ICLI")
@@ -35,10 +35,10 @@ public class RelationsEntity {
     private String recFecFvrf;
 
 
-    public RelationsEntity() {
+    public RecEntity() {
     }
 
-    public RelationsEntity(String recCicIcli, String recCodTrec, String recCodArec, String recCicIrel, String recSgvArec, String recFecFval, String recFecFini, String recFecFter, String recFecFvrf) {
+    public RecEntity(String recCicIcli, String recCodTrec, String recCodArec, String recCicIrel, String recSgvArec, String recFecFval, String recFecFini, String recFecFter, String recFecFvrf) {
         this.recCicIcli = recCicIcli;
         this.recCodTrec = recCodTrec;
         this.recCodArec = recCodArec;
@@ -122,47 +122,47 @@ public class RelationsEntity {
         this.recFecFvrf = recFecFvrf;
     }
 
-    public RelationsEntity recCicIcli(String recCicIcli) {
+    public RecEntity recCicIcli(String recCicIcli) {
         setRecCicIcli(recCicIcli);
         return this;
     }
 
-    public RelationsEntity recCodTrec(String recCodTrec) {
+    public RecEntity recCodTrec(String recCodTrec) {
         setRecCodTrec(recCodTrec);
         return this;
     }
 
-    public RelationsEntity recCodArec(String recCodArec) {
+    public RecEntity recCodArec(String recCodArec) {
         setRecCodArec(recCodArec);
         return this;
     }
 
-    public RelationsEntity recCicIrel(String recCicIrel) {
+    public RecEntity recCicIrel(String recCicIrel) {
         setRecCicIrel(recCicIrel);
         return this;
     }
 
-    public RelationsEntity recSgvArec(String recSgvArec) {
+    public RecEntity recSgvArec(String recSgvArec) {
         setRecSgvArec(recSgvArec);
         return this;
     }
 
-    public RelationsEntity recFecFval(String recFecFval) {
+    public RecEntity recFecFval(String recFecFval) {
         setRecFecFval(recFecFval);
         return this;
     }
 
-    public RelationsEntity recFecFini(String recFecFini) {
+    public RecEntity recFecFini(String recFecFini) {
         setRecFecFini(recFecFini);
         return this;
     }
 
-    public RelationsEntity recFecFter(String recFecFter) {
+    public RecEntity recFecFter(String recFecFter) {
         setRecFecFter(recFecFter);
         return this;
     }
 
-    public RelationsEntity recFecFvrf(String recFecFvrf) {
+    public RecEntity recFecFvrf(String recFecFvrf) {
         setRecFecFvrf(recFecFvrf);
         return this;
     }
@@ -171,11 +171,11 @@ public class RelationsEntity {
     public boolean equals(Object o) {
         if (o == this)
             return true;
-        if (!(o instanceof RelationsEntity)) {
+        if (!(o instanceof RecEntity)) {
             return false;
         }
-        RelationsEntity relationsEntity = (RelationsEntity) o;
-        return Objects.equals(recCicIcli, relationsEntity.recCicIcli) && Objects.equals(recCodTrec, relationsEntity.recCodTrec) && Objects.equals(recCodArec, relationsEntity.recCodArec) && Objects.equals(recCicIrel, relationsEntity.recCicIrel) && Objects.equals(recSgvArec, relationsEntity.recSgvArec) && Objects.equals(recFecFval, relationsEntity.recFecFval) && Objects.equals(recFecFini, relationsEntity.recFecFini) && Objects.equals(recFecFter, relationsEntity.recFecFter) && Objects.equals(recFecFvrf, relationsEntity.recFecFvrf);
+        RecEntity recEntity = (RecEntity) o;
+        return Objects.equals(recCicIcli, recEntity.recCicIcli) && Objects.equals(recCodTrec, recEntity.recCodTrec) && Objects.equals(recCodArec, recEntity.recCodArec) && Objects.equals(recCicIrel, recEntity.recCicIrel) && Objects.equals(recSgvArec, recEntity.recSgvArec) && Objects.equals(recFecFval, recEntity.recFecFval) && Objects.equals(recFecFini, recEntity.recFecFini) && Objects.equals(recFecFter, recEntity.recFecFter) && Objects.equals(recFecFvrf, recEntity.recFecFvrf);
     }
 
     @Override
@@ -198,5 +198,5 @@ public class RelationsEntity {
             "}";
     }
 
-    
+
 }

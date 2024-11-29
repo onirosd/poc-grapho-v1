@@ -4,7 +4,7 @@ import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.InputArgument;
 import net.csonic.customers.graphql.DgsConstants;
 import net.csonic.customers.graphql.GraphqlBeanMapper;
-import net.csonic.customers.graphql.service.query.CorreoQueryService;
+import net.csonic.customers.graphql.service.query.DccQueryService;
 import net.csonic.customers.graphql.types.Emails;
 import net.csonic.customers.graphql.types.EmailsSearchFilter;
 
@@ -14,14 +14,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @DgsComponent
-public class CorreoDataResolver {
-    
+public class DccDataResolver {
+
     private final GraphqlBeanMapper graphqlBeanMapper;
-     
+
     @Autowired
-    private CorreoQueryService queryService;
+    private DccQueryService queryService;
     @Autowired
-    public CorreoDataResolver(GraphqlBeanMapper graphqlBeanMapper) {
+    public DccDataResolver(GraphqlBeanMapper graphqlBeanMapper) {
         this.graphqlBeanMapper = graphqlBeanMapper;
     }
 
@@ -30,13 +30,13 @@ public class CorreoDataResolver {
     public List<Emails> findDirec(@InputArgument(name = DgsConstants.QUERY.DIRECSEARCH_INPUT_ARGUMENT.Filter) EmailsSearchFilter filter) {
 
         return queryService.findByCorreoKeyIdbc(filter.getCic())
-               .stream().map(graphqlBeanMapper::mapToGraphql)
-               .collect(Collectors.toList());
+                .stream().map(graphqlBeanMapper::mapToGraphql)
+                .collect(Collectors.toList());
 
         // .map(dbEntity -> {
         //     return GraphqlBeanMapper.mapToGraphql(dbEntity);
         // });
-         
+
     }
 
 }
